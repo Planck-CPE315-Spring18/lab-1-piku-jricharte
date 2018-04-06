@@ -1,4 +1,4 @@
-    .syntax unified
+.syntax unified
 
     @ --------------------------------
     .global main
@@ -8,9 +8,14 @@ main:
     push    {ip, lr}
 
     @ Load the argument and perform the call. This is like 'printf("...")' in C.
-    ldr     r0, =message
+    ldr     r0, =message0
     bl      printf
 
+    ldr     r0, =message1
+    bl      printf
+   
+    ldr     r0, =message2
+    bl      printf
     @ Exit from 'main'. This is like 'return 0' in C.
     mov     r0, #0      @ Return 0.
     @ Pop the dummy ip to reverse our alignment fix, and pop the original lr
@@ -20,5 +25,9 @@ main:
     @ --------------------------------
     @ Data for the printf call. The GNU assembler's ".asciz" directive
     @ automatically adds a NULL character termination.
-message:
-    .asciz  "Hello, world.\n"
+message0:
+    .asciz  "Never used a pi.\n"
+message1:
+    .asciz  "I see that they are useful.\n"
+message2:
+    .asciz  "Versatile machine.\n"
